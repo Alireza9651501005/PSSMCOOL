@@ -61,10 +61,13 @@ grey_pssm_pseAAC<-function(pssm_name){
     U<-as.matrix(U)
     column1<- -m2[2:L,j]
     B[[j]]<-data.frame(column1,column2,column3)
-    B[[j]]<-as.matrix(B[[j]])
     colnames(B[[j]])<-NULL
     rownames(B[[j]])<-NULL
+    B[[j]]<-as.matrix(B[[j]])
     x<-t(B[[j]])%*%B[[j]]
+    while(det(x)==0){
+      diag(x)<-diag(x)+1
+    }
     y<-t(B[[j]])%*%U
     x2<-solve(x)
     x2<-round(x2,digits = 4)

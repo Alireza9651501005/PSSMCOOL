@@ -26,7 +26,7 @@ a feature vector of length 290.
 parameter n must be equal or greater than 3 and equal or less then L which L is length of protein
 }
 \examples{
-as<-DFMCA_PSSM(system.file("extdata", "C7GQS7.txt.pssm", package="PSSMCOOL"),4)
+as<-DFMCA_PSSM(system.file("extdata", "C7GQS7.txt.pssm", package="PSSMCOOL"),7)
 }
 \references{
 Y. Liang, S. Zhang, S. J. S. Ding, and Q. i. E. Research, "Accurate prediction of Gram-negative bacterial secreted protein

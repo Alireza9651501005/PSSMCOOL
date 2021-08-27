@@ -19,7 +19,7 @@
 #' descriptors based on evolutionary information," vol. 66, no. 1, pp. 61-78, 2018.
 #' @export
 #' @examples
-#' as<-DFMCA_PSSM(system.file("extdata", "C7GQS7.txt.pssm", package="PSSMCOOL"),4)
+#' as<-DFMCA_PSSM(system.file("extdata", "C7GQS7.txt.pssm", package="PSSMCOOL"),7)
 DFMCA_PSSM<-function(pssm_name,n){
   x<-read.delim(pssm_name,skip = 2,sep = "",header = FALSE)
   x<-x[-1,-c(1,23:44)]

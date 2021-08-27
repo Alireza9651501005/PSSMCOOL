@@ -31,7 +31,7 @@ PSSM_SD <- function(pssm_name){
   x<-as.matrix(x)
   mode(x)<-"integer"
   p<-x
-  p<-1/(1+exp(-p))
+  #p<-1/(1+exp(-p))
   L<-dim(p)[1]
   t<-apply(p,2,sum)
   names(t)<-NULL

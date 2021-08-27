@@ -1,4 +1,4 @@
-#' disulfid connectivity feature
+#' Disulfide connectivity feature
 #' @description This feature is used to predict the disulfide bond within a protein.
 #' @param pssm_name name of PSSM Matrix file
 #' @import utils

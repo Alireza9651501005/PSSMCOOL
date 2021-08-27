@@ -4,10 +4,12 @@
 \alias{FPSSM}
 \title{D-FPSSM and SF-PSSM feature vectors}
 \usage{
-FPSSM(pssm_name)
+FPSSM(pssm_name, hk)
 }
 \arguments{
 \item{pssm_name}{name of PSSM Matrix file}
+
+\item{hk}{a parameter that indicates which amino acid alphabet must be used}
 }
 \value{
 two feature vectors of different length which is used in later steps.
@@ -18,7 +20,7 @@ which then used by FPSSM2 function to construct feature vector of length 100 for
 proteins which then used for protein-protein interaction prediction in each dataset.
 }
 \examples{
-q<-FPSSM(system.file("extdata","C7GQS7.txt.pssm",package="PSSMCOOL"))
+q<-FPSSM(system.file("extdata","C7GQS7.txt.pssm",package="PSSMCOOL"),8)
 
 }
 \references{

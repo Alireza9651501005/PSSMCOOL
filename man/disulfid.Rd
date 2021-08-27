@@ -2,7 +2,7 @@
 % Please edit documentation in R/DISSULFID.R
 \name{disulfid}
 \alias{disulfid}
-\title{disulfid connectivity feature}
+\title{Disulfide connectivity feature}
 \usage{
 disulfid(pssm_name)
 }
