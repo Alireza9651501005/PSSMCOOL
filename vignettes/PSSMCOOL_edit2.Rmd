@@ -1,7 +1,7 @@
 ---
 title: "PSSMCOOL: R package for generating various numerical Features Extracted from Position Specific Scoring Matrix (PSSM)"
 author:
- - Javad Zahiri, zahiri@modares.ac.ir, URL:https://www.modares.ac.ir/~zahiri
+ - Javad Zahiri, jzahiri@health.ucsd.edu , URL:https://profiles.ucsd.edu/javad.n.zahiri
  - Alireza Mohammadi, alireza691111@gmail.com, URL:https://github.com/Alireza9651501005/PSSMCOOL/
  - Saber Mohammadi, sabermohammdi.1994@gmail.com
 date: "`r Sys.Date()`"
@@ -24,7 +24,7 @@ vignette: >
 
 # Preface
 <br></br>
-<font size="4"> Feature extraction or feature encoding is a fundamental step in the construction of high-quality machine learning-based models. Specifically, this is a key step for determining the effectiveness of the trained models in bioinformatics applications. In the last two decades, a variety of feature encoding schemes have been proposed in order to exploit useful patterns from protein sequences. Such schemes are often based on sequence information or physicochemical properties of amino acids. Although direct features derived from sequences themselves (such as amino acid compositions, dipeptide compositions, and counting of k-mers) are regarded as essential for training models, an increasing number of studies have shown that evolutionary information in the form of PSSM profiles is much more informative than sequence information alone. Accordingly, PSSM-based feature descriptors have been commonly used as indispensable primary features to construct models, filling a major gap in the current bioinformatics research. For example, PSSM-based feature descriptors have successfully improved the prediction performance of structural and functional properties of proteins across a wide spectrum of bioinformatics applications. These predictions can be applied for protein fold recognition and the prediction of protein structural classes, protein-protein interactions, protein subcellular localization, RNA-binding sites, and protein functions. But at the same time, there is no comprehensive, simple tool in the R programming language for extracting all of these features from the PSSM matrix and displaying it in the output. PSSMCOOL package here is developed in R for these purposes. First, in Figure 1 which is a table that lists all of the features implemented in this package with their feature-lengths is brought. Then each one of these features will be explained in full detail.</font>
+<font size="4"> Feature extraction or feature encoding is a fundamental step in the construction of high-quality machine learning-based models. Specifically, this is a key step for determining the effectiveness of the trained models in bioinformatics applications. In the last two decades, a variety of feature encoding schemes have been proposed in order to exploit useful patterns from protein sequences. Such schemes are often based on sequence information or physicochemical properties of amino acids. Although direct features derived from sequences themselves (such as amino acid compositions, dipeptide compositions, and counting of k-mers) are regarded as essential for training models, an increasing number of studies have shown that evolutionary information in the form of PSSM profiles is much more informative than sequence information alone. Accordingly, PSSM-based feature descriptors have been commonly used as indispensable primary features to construct models, filling a major gap in the current bioinformatics research. For example, PSSM-based feature descriptors have successfully improved the prediction performance of structural and functional properties of proteins across a wide spectrum of bioinformatics applications. These predictions can be applied for protein fold recognition and the prediction of protein structural classes, protein-protein interactions, protein subcellular localization, RNA-binding sites, and protein functions. But at the same time, there is no comprehensive, simple tool in the R programming language for extracting all of these features from the PSSM and displaying it in the output. PSSMCOOL package here is developed in R for these purposes. First, in Figure 1 which is a table that lists all of the features implemented in this package with their feature-lengths is brought. Then each one of these features will be explained in full detail.</font>
 
 <br></br>
 
@@ -57,7 +57,7 @@ library(PSSMCOOL)
 
 <br></br>
 
-```{r pssm-ac,echo=FALSE,fig.cap="Figure 2: process of extracting PSSM-AC feature vector from PSSM Matrix",out.width = '70%'}
+```{r pssm-ac,echo=FALSE,fig.cap="Figure 2: process of extracting PSSM-AC feature vector from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/pssm_ac.jpg")
 ```
 <br></br>
@@ -80,7 +80,7 @@ knitr::include_graphics("figures/pssm_ac.jpg")
 <font size="4">This feature stands for dipeptide composition, which multiplies the values that are located in two consecutive rows and two different columns. Having calculated these values for different rows and columns, they are summed. Next, for both columns, the sum is divided by L-1. Since the result depends on two different columns, eventually a feature vector of length 400, according to Figure 3 and following equation ,will be obtained [@liu2010prediction].</font>
 <br></br>
 
-```{r dpc-pssm,echo=FALSE,fig.cap="Figure 3: process of extracting DPC-PSSM feature vector from PSSM Matrix",out.width = '70%'}
+```{r dpc-pssm,echo=FALSE,fig.cap="Figure 3: process of extracting DPC-PSSM feature vector from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/dpc-pssm.jpg")
 ```
 <br></br>
@@ -90,7 +90,7 @@ y_{i,j}=\frac{1}{(L-1)}\sum_{k=1}^{L-1}S_{k,i}S_{k+1,j}, \\(1\leq{i,j}\leq{20})
 \end{equation}
 
 
-<font size="4">In the above relation,$S_{i,j}$'s,are the PSSM matrix elements and $y_{i,j}$'s are the 20x20 matrix elements, which by placing the rows of this matrix next to each other,DPC-PSSM feature vector of length 400 is obtained.</font>
+<font size="4">In the above relation,$S_{i,j}$'s,are the PSSM elements and $y_{i,j}$'s are the 20x20 matrix elements, which by placing the rows of this matrix next to each other,DPC-PSSM feature vector of length 400 is obtained.</font>
 <br></br>
 
 <font size="4"> Usage of this feature in PSSMCOOL package:</font>
@@ -102,9 +102,9 @@ head(ss, n = 50)
 <br></br>
 
 # Trigram-PSSM
-<font size="4">This feature vector is of length 8000, which is extracted from the PSSM matrix. If we multiply elements available in three consecutive rows and three different columns of the PSSM matrix by each other, and apply this to all rows (all three consecutive rows) and then sum these numbers, eventually one of the elements of feature vector with length 8000 corresponding to the three selected columns will be obtained. Because we have 20 different columns, The final feature vector will be of length 8000 = 20 * 20 * 20. Figure 4: shows these steps. For example, in this figure for three marked rows and columns, the numbers obtained from the intersection of these rows and columns marked with a blue dotted circle around them, are multiplied to each other [@paliwal2014tri]. </font>
+<font size="4">This feature vector is of length 8000, which is extracted from the PSSM. If we multiply elements available in three consecutive rows and three different columns of the PSSM by each other, and apply this to all rows (all three consecutive rows) and then sum these numbers, eventually one of the elements of feature vector with length 8000 corresponding to the three selected columns will be obtained. Because we have 20 different columns, The final feature vector will be of length 8000 = 20 * 20 * 20. Figure 4: shows these steps. For example, in this figure for three marked rows and columns, the numbers obtained from the intersection of these rows and columns marked with a blue dotted circle around them, are multiplied to each other [@paliwal2014tri]. </font>
 
-```{r trigram,echo=FALSE,fig.cap="Figure 4: process of extracting trigram-PSSM feature vector from PSSM Matrix",out.width = '70%'}
+```{r trigram,echo=FALSE,fig.cap="Figure 4: process of extracting trigram-PSSM feature vector from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/trigram.jpg")
 ```
 <br></br>
@@ -124,9 +124,9 @@ head(as, n = 50)
 <br></br>
 
 # Pse-PSSM
-<font size="4"> The length of this feature vector is 320. The first 20 numbers of this feature vector are the mean of 20 columns in PSSM matrix, and the next values for each column are the mean squares of the difference between the elements of row i and i + lag in this column. Because the lag value varies between 1 and 15, the final feature vector will have a length of 320. Figure 5: and following equation shows the process of this function and the corresponding mathematical relationship, respectively [@yu2013learning].</font>
+<font size="4"> The length of this feature vector is 320. The first 20 numbers of this feature vector are the mean of 20 columns in PSSM, and the next values for each column are the mean squares of the difference between the elements of row i and i + lag in this column. Because the lag value varies between 1 and 15, the final feature vector will have a length of 320. Figure 5: and following equation shows the process of this function and the corresponding mathematical relationship, respectively [@yu2013learning].</font>
 
-```{r pse-pssm,echo=FALSE,fig.cap="Figure 5: process of extracting Pse-PSSM feature vector from PSSM Matrix",out.width = '70%'}
+```{r pse-pssm,echo=FALSE,fig.cap="Figure 5: process of extracting Pse-PSSM feature vector from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/pse-pssm.jpg")
 ```
 <br></br>
@@ -148,7 +148,7 @@ head(v, n = 50)
 # k-Separated-bigram-PSSM
 <font size="4"> This feature is almost identical to the DPC feature, and in fact, the DPC feature is part of this feature (for k = 1) and for two different columns, it considers rows that have distance k [@saini2016protein].</font>
 
-```{r k-separated,echo=FALSE,fig.cap="Figure 6: process of extracting K-separated-bigam-PSSM feature vector from PSSM Matrix",out.width = '70%'}
+```{r k-separated,echo=FALSE,fig.cap="Figure 6: process of extracting K-separated-bigam-PSSM feature vector from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/k-separated.jpg")
 ```
 <br></br>
@@ -186,7 +186,7 @@ ED-PSSM=(e_1,e_2,...,e_{20})\quad where \quad e_t=(e_{1,t},e_{2,t},...,e_{20,t})
 e_{k,t}=\sum_{i=2}^{L-1}x_{i-1,i+1}/L-2 \quad , k,t=1,2,..,20
 \end{equation}
 
-<font size="4"> Using this ED-PSSM matrix, the three features EDP, EEDP, and MEDP are defined by the equations
+<font size="4"> Using this ED-PSSM, the three features EDP, EEDP, and MEDP are defined by the equations
 following equation, EDP has a length of 20, EEDP has a length of 400, and the MEDP feature is obtained by merging these two feature vectors [@zhang2014predict].</font>
 
 \begin{equation}
@@ -202,7 +202,7 @@ Aver_1=(p_{i-1,k}+p_{i,s})/2 \\
 Aver_2=(p_{i,s}+p_{i+1,t})/2
 \end{equation}
 
-```{r eedp,echo=FALSE,fig.cap="Figure 7: process of extracting EDP-EEDP-MEDP feature vectors from PSSM Matrix",out.width = '70%'}
+```{r eedp,echo=FALSE,fig.cap="Figure 7: process of extracting EDP-EEDP-MEDP feature vectors from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/EEDP.jpg")
 ```
 <br></br>
@@ -215,10 +215,10 @@ head(as, n = 50)
 <br></br>
 
 # AB-PSSM
-<font size="4"> This feature consists of two types of feature vectors. At first, each protein sequence is divided into 20 equal parts, each of which is called a block, and in each block, the row vectors of the PSSM matrix
+<font size="4"> This feature consists of two types of feature vectors. At first, each protein sequence is divided into 20 equal parts, each of which is called a block, and in each block, the row vectors of the PSSM
 related to that block are added together. The resulting final vector is divided by the length of that block, which is equal to 5% of protein length. Finally, by placing these 20 vectors side by side, the first feature vector of length 400 is obtained. The second feature for each amino acid in each column is the average of the positive numbers in that column and for each block, and these 20 values, corresponding to 20 blocks, are placed next to each other, and therefore for each of the 20 types of amino acids, a vector of length 20 is obtained, and by placing these together,the second feature vector of length 400, is obtained. Figure 8 represents this process [@cheol2010position].</font>
 
-```{r ab-pssm,echo=FALSE,fig.cap="Figure 8: process of extracting AB-PSSM feature vectors from PSSM Matrix",out.width = '70%'}
+```{r ab-pssm,echo=FALSE,fig.cap="Figure 8: process of extracting AB-PSSM feature vectors from PSSM",out.width = '70%'}
 knitr::include_graphics("figures/AB-PSSM.jpg")
 ```
 <br></br>
@@ -231,7 +231,7 @@ head(zz[1], n = 50)
 <br></br>
 
 # AATP-TPC
-<font size="4"> In this feature, at first, a TPM matrix is constructed from the PSSM matrix, which has represented by a vector corresponding to the following equation:</font>
+<font size="4"> In this feature, at first, a TPM matrix is constructed from the PSSM, which has represented by a vector corresponding to the following equation:</font>
 
 \begin{equation}
 Y_{TPM}=(y_{1,1},y_{1,2},...,y_{1,20},...,y_{i,1},...,y_{i,20},...,y_{20,1},...,y_{20,20})^T
@@ -245,7 +245,7 @@ Y_{TPM}=(y_{1,1},y_{1,2},...,y_{1,20},...,y_{i,1},...,y_{i,20},...,y_{20,1},...,
 y_{i,j}=(\sum_{k=1}^{L-1}P_{k,i}\times P_{k+1,j})/(\sum_{j=1}^{20}\sum_{k=1}^{L-1}P_{k+1,j}\times P_{k,i}) \\  1\leq{i,j}\leq{20}
 \end{equation}
 <br></br>
-<font size="4"> In the above equation, the numerator is the same as the equation related to DPC-PSSM feature without considering its coefficient. By placing these components together, a TPC feature vector of length 400 is obtained, and if we add the AAC feature vector of length 20 which is the average of columns of the PSSM matrix to the beginning of this vector, AATP feature vector of length 420 is obtained [@zhang2012using].</font>
+<font size="4"> In the above equation, the numerator is the same as the equation related to DPC-PSSM feature without considering its coefficient. By placing these components together, a TPC feature vector of length 400 is obtained, and if we add the AAC feature vector of length 20 which is the average of columns of the PSSM to the beginning of this vector, AATP feature vector of length 420 is obtained [@zhang2012using].</font>
 <br></br>
 <font size="4"> Usage of this feature in PSSMCOOL package:</font>
 
@@ -261,7 +261,7 @@ head(as, n = 50)
 
 ## CSAAC
 
-<font size="4"> First, the consensus sequence is obtained from the PSSM matrix according to the following equation, then from this consensus sequence next feature vectors are obtained </font>
+<font size="4"> First, the consensus sequence is obtained from the PSSM according to the following equation, then from this consensus sequence next feature vectors are obtained </font>
 <br></br>
 \begin{equation}
 \alpha(i)=argmax{P_{i,j}:\ 1\leq j\leq {20}} \quad ,1\leq i\leq L
@@ -286,7 +286,7 @@ CSCM=\frac{\sum_{j=1}^{n_i}n_{i,j}}{L(L-1)}\quad ,1\leq i\leq{20}\quad ,1\leq j\
 
 ## Segmented PsePSSM features
 
-<font size="4">Here the PSSM matrix is divided into n segments, which corresponds to dividing the initial protein sequence into n segments,  if n = 2:</font>
+<font size="4">Here the PSSM is divided into n segments, which corresponds to dividing the initial protein sequence into n segments,  if n = 2:</font>
 
 \begin{equation}
 L_1=round(L/2) \quad , L_2=L-L_1
@@ -364,13 +364,13 @@ head(A, n = 50)
 
 # D-FPSSM/S-FPSSM
 
-<font size="4">If we sum the numbers of each column in the PSSM matrix, we get a feature vector of length 20 as follows:</font>
+<font size="4">If we sum the numbers of each column in the PSSM, we get a feature vector of length 20 as follows:</font>
 <br></br>
 \begin{equation}
 D=(d_1,d_2,...,d_{20})
 \end{equation}
 
-<font size="4">If we remove the negative elements somehow of the PSSM matrix and call the resulting new matrix FPSSM and then calculate this feature vector for FPSSM, the components of this vector will depend on the length of the original protein, so to eliminate this dependency, we normalize the components of this vector using the following equation:</font>
+<font size="4">If we remove the negative elements somehow of the PSSM and call the resulting new matrix FPSSM and then calculate this feature vector for FPSSM, the components of this vector will depend on the length of the original protein, so to eliminate this dependency, we normalize the components of this vector using the following equation:</font>
 
 \begin{equation}
 d_i=\frac{d_i-min}{max\times L}
@@ -382,11 +382,11 @@ d_i=\frac{d_i-min}{max\times L}
 S=(s_1^{(1)},s_2^{(1)},...,s_{20}^{(1)},s_1^{(2)},s_2^{(2)},...,s_{20}^{(2)},...,s_1^{(20)},s_2^{(20)},...,s_{20}^{(20)})
 \end{equation}
 <br></br>
-<font size="4">If we name the columns of the FPSSM matrix from $a_1$ to $a_{20}$ in the order from left to right, 
-then $S_j^{(i)}$ is equal to the sum of those members in the j-th column in the FPSSM matrix whose corresponding row amino acid is equal to $a_i$. Figure 9 schematically shows these steps [@zahiri2013ppievo]:</font>
+<font size="4">If we name the columns of the FPSSM from $a_1$ to $a_{20}$ in the order from left to right, 
+then $S_j^{(i)}$ is equal to the sum of those members in the j-th column in the FPSSM whose corresponding row amino acid is equal to $a_i$. Figure 9 schematically shows these steps [@zahiri2013ppievo]:</font>
 <br></br>
 
-```{r fpssm,echo=FALSE,fig.cap="Figure 9: process of making FPSSM Matrix and extracting corresponding feature vectors",out.width = '70%'}
+```{r fpssm,echo=FALSE,fig.cap="Figure 9: process of making FPSSM and extracting corresponding feature vectors",out.width = '70%'}
 knitr::include_graphics("figures/s-fpssm.jpg")
 ```
 
@@ -402,7 +402,7 @@ head(q, n = 50)
 
 # SCSH2
 
-<font size="4"> To generate this feature vector, the consensus sequence corresponding to the protein sequence is extracted using the PSSM matrix. Then, by placing these two sequences next to each other, a matrix with dimensions of 2 * L will be created. In the next step, each component in the upper row of this matrix is connected to two components in the lower row of this matrix, and thus a graph similar to a bipartite graph could be created.
+<font size="4"> To generate this feature vector, the consensus sequence corresponding to the protein sequence is extracted using the PSSM. Then, by placing these two sequences next to each other, a matrix with dimensions of 2 * L will be created. In the next step, each component in the upper row of this matrix is connected to two components in the lower row of this matrix, and thus a graph similar to a bipartite graph could be created.
 Now in this graph, each path of length 2 specifies a 3-mer and each path of length 1 denotes a 2-mer corresponding to these two sequences. Now if we consider a table consisting of two rows and 8000 columns so that the first row contains all possible 3-mers of 20 amino acids, then for every 3-mer obtained from this graph, we put number 1 below the corresponding cell With that 3-mer in the aforementioned table and 0 in other cells. so This gives us a vector of length 8000. For the 2-mers obtained from this graph, a vector of length 400 is obtained in a similar way. figures 10, 11 show these processes [@zahiri2014locfuse]. </font>
 <br></br>
 <br></br>
@@ -432,7 +432,7 @@ head(zz, n = 200)
 
 # RPSSM
 
-<font size="4">If we represent the PSSM matrix as follows:</font>
+<font size="4">If we represent the PSSM as follows:</font>
 
 \begin{equation}
 D=(P_A,P_R,P_N,P_D,P_C,P_Q,P_E,P_G,P_H,P_I,P_L,P_K,P_M,P_F,P_P,P_S,P_T,P_W,P_Y,P_V)
@@ -445,7 +445,7 @@ P_A=(P_{1,A},P_{2,A},...,P_{L,A})^T
 \end{equation}
 
 <br></br>
-<font size="4">Now, using the following equations, we merge the columns of the PSSM matrix and obtain a matrix with dimensions $L\times 10$:</font>
+<font size="4">Now, using the following equations, we merge the columns of the PSSM and obtain a matrix with dimensions $L\times 10$:</font>
 
 <br></br>
 
@@ -553,7 +553,7 @@ DCT(u,v)=\rho(u)\rho(v)\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)\cos\frac{(2x+1)u\p
 \sqrt{\frac{2}{N}} & 1\leq{v}\leq{N-1}\end{array}\right.
 \end{equation}
 
-<font size="4"> In above Equation, the matrix $f(x,y)\in P^{N\times M}$ is the input signal and here represents the PSSM matrix with dimensions $N\times 20$. According to Equation====, it is clear that the length of the resulting feature vector depends on the length of the original protein, so in most articles that have used this feature vector, the final feature vector DCT, which encodes a protein sequence by choosing the first 400 coefficients is obtained [@wang2017advancing].</font>
+<font size="4"> In above Equation, the matrix $f(x,y)\in P^{N\times M}$ is the input signal and here represents the PSSM with dimensions $N\times 20$. According to Equation====, it is clear that the length of the resulting feature vector depends on the length of the original protein, so in most articles that have used this feature vector, the final feature vector DCT, which encodes a protein sequence by choosing the first 400 coefficients is obtained [@wang2017advancing].</font>
 
 <br></br>
 
@@ -588,7 +588,7 @@ knitr::include_graphics("figures/dwt.jpg")
 ```
 
 <br></br>
-<font size="4">The PSSM matrix has 20 columns. Therefore, the PSSM consists of 20 types of discrete signals (L-length). Therefore, we used the level 4 DWT as mentioned above to analyze these discrete signals from PSSM (each column) and to extract the PSSM-DWT feature vector from the PSSM matrix, which is a feature vector of length 80 [@wang2019crystalm].</font>
+<font size="4">The PSSM has 20 columns. Therefore, the PSSM consists of 20 types of discrete signals (L-length). Therefore, we used the level 4 DWT as mentioned above to analyze these discrete signals from PSSM (each column) and to extract the PSSM-DWT feature vector from the PSSM, which is a feature vector of length 80 [@wang2019crystalm].</font>
 
 <br></br>
 
@@ -603,12 +603,12 @@ head(as, n = 50)
 # Disulfide_PSSM
 <font size="4">For the purpose of predicting disulfide bond in protein at first, the total number of cysteine amino
 acids in the protein sequence is counted and their position in the protein sequence is identified.
-Then, using a sliding window with a length of 13, moved on the PSSM matrix from top to bottom so
+Then, using a sliding window with a length of 13, moved on the PSSM from top to bottom so
 that the middle of the window is on the amino acid cysteine, then the rows below the matrix obtained
-from the PSSM matrix with the dimension of 13 x 20 are placed next to each other to get a feature vector
+from the PSSM with the dimension of 13 x 20 are placed next to each other to get a feature vector
 with a length of 260 = 20 * 13 per cysteine. If the position of the first and last cysteine in the
 protein sequence is such that the middle of sliding window is not on cysteine residue while moving
-on PSSM Matrix, then the required number of zero rows from top and bottom is added to the PSSM
+on PSSM, then the required number of zero rows from top and bottom is added to the PSSM
 matrix to achieve this goal.Thus, for every cysteine amino acid presented in protein sequence, a
 feature vector with a length of 260 is formed.Then all the pairwise combinations of these cysteines
 is wrote in the first column of a table. In front of each of these pairwise combinations, the
@@ -620,7 +620,7 @@ table into training and testing data and predict the desired disulfide bonds bet
 <br></br>
 <br></br>
 
-```{r disulfid,echo=FALSE,fig.cap="Figure 14: The process of extracting disulfide-PSSM feature from the PSSM matrix",out.width = '70%'}
+```{r disulfid,echo=FALSE,fig.cap="Figure 14: The process of extracting disulfide-PSSM feature from the PSSM",out.width = '70%'}
 knitr::include_graphics("figures/disulfid.jpg")
 ```
 
@@ -635,7 +635,7 @@ head(aq[,1:50])
 <br></br>
 
 # DP-PSSM
-<font size="4">The extraction of this feature is obtained using the following equations from the PSSM matrix:</font>
+<font size="4">The extraction of this feature is obtained using the following equations from the PSSM:</font>
 
 
 \begin{equation}
@@ -673,7 +673,7 @@ G_j&=[\bar{\Delta}_{1,j}^P,\bar{\Delta}_{1,j}^N,\bar{\Delta}_{2,j}^P,\bar{\Delta
 
 <br></br>
 
-<font size="4">In the above equations, $T_{i,j}$ represents the value on the i-th row and j-th column of the normalized PSSM matrix, which is denoted by $M_T$. This matrix is constructed from the PSSM matrix using the following equations:</font>
+<font size="4">In the above equations, $T_{i,j}$ represents the value on the i-th row and j-th column of the normalized PSSM, which is denoted by $M_T$. This matrix is constructed from the PSSM using the following equations:</font>
 
 <br></br>
 
@@ -683,7 +683,7 @@ STD_i=\sqrt{\frac{\sum_{u=1}^{20}[E_{i,u}-mean_i]^2}{20}}\\
 T_{i,j}=\frac{E_{i,j}-mean_i}{STD_i}
 \end{equation}
 
-<font size="4">In above equations $\overline{T}_j^P$ represents the mean of the positive values of $\{T_{i,j}|i=1,2,...,L\}$ and $\overline T_j^N$ represents the mean of the negative values of the above set, which in fact the above set represents the j-th column of the matrix $M_T$ the expression $NP_j$ indicates the number of positive values of set $\{T_{i,j}|i=1,2,...,L\}$ and $NN_j$ is related to the number of negative values of the mentioned set. It is clear that this feature vector arises from the connection of two vectors $G'$,$T'$. According to the equations, it is clear that the length of the first feature vector is 40 and the length of the second feature vector is $\alpha\times 40$, which by selecting 2 in the used article, a feature vector of length 120 is created from the PSSM matrix [@juan2009predicting].</font>
+<font size="4">In above equations $\overline{T}_j^P$ represents the mean of the positive values of $\{T_{i,j}|i=1,2,...,L\}$ and $\overline T_j^N$ represents the mean of the negative values of the above set, which in fact the above set represents the j-th column of the matrix $M_T$ the expression $NP_j$ indicates the number of positive values of set $\{T_{i,j}|i=1,2,...,L\}$ and $NN_j$ is related to the number of negative values of the mentioned set. It is clear that this feature vector arises from the connection of two vectors $G'$,$T'$. According to the equations, it is clear that the length of the first feature vector is 40 and the length of the second feature vector is $\alpha\times 40$, which by selecting 2 in the used article, a feature vector of length 120 is created from the PSSM [@juan2009predicting].</font>
 
 <br></br>
 
@@ -696,7 +696,7 @@ head(ss, n = 50)
 <br></br>
 
 # DFMCA-PSSM
-<font size="4">In this feature, each of the columns of the PSSM matrix is considered as a non-static time series. Assuming that $\{x_i\}$,$\{y_i\}$ for i=1,2,...,L represent two different columns of the PSSM matrix, then two cumulative time series X,Y of these two columns are obtained according to the following equations:</font>
+<font size="4">In this feature, each of the columns of the PSSM is considered as a non-static time series. Assuming that $\{x_i\}$,$\{y_i\}$ for i=1,2,...,L represent two different columns of the PSSM, then two cumulative time series X,Y of these two columns are obtained according to the following equations:</font>
 
 <br></br>
 
@@ -723,7 +723,7 @@ f_{DFMCA}^2(s)=\frac{1}{L-s+1}\sum_{k=1}^{L-s+1}(X_k-\tilde{X}_{k,s})(Y_k-\tilde
 
 <br></br>
 
-<font size="4">According to the above equation, it is clear that each element of this feature vector is obtained by using two different columns of the PSSM matrix, and since we have 20 different columns and the order of the columns does not matter, the length of the obtained feature vector will be equal to $\binom{20}{2}=\frac{20\times 19}{2}=190$ [@liang2018accurate]</font>
+<font size="4">According to the above equation, it is clear that each element of this feature vector is obtained by using two different columns of the PSSM, and since we have 20 different columns and the order of the columns does not matter, the length of the obtained feature vector will be equal to $\binom{20}{2}=\frac{20\times 19}{2}=190$ [@liang2018accurate]</font>
 
 <br></br>
 
@@ -737,7 +737,7 @@ head(as, n = 50)
 
 # grey_pssm_pseAAC
 
-<font size="4">This function produces a feature vector of length 100. The first 20 components of this vector are the same as the normalized frequency of 20 standard amino acids in the protein. The second 20 components of this vector are the average of the 20 columns of the PSSM matrix corresponding to the protein, and the grey system model method is used to define the next 60 components [@kabir2018improving]. If we show this feature vector with length 100 as follows:</font>
+<font size="4">This function produces a feature vector of length 100. The first 20 components of this vector are the same as the normalized frequency of 20 standard amino acids in the protein. The second 20 components of this vector are the average of the 20 columns of the PSSM corresponding to the protein, and the grey system model method is used to define the next 60 components [@kabir2018improving]. If we show this feature vector with length 100 as follows:</font>
 
 \begin{equation}
 V=(\psi_1,\psi_2,...,\psi_{100})
@@ -749,7 +749,7 @@ V=(\psi_1,\psi_2,...,\psi_{100})
 \psi_i=f_i \quad (i=1,2,...,20)
 \end{equation}
 
-<font size="4">Where $f_i$ is the normalized frequency of type i amino acids of the 20 standard amino acids in the protein chain. If we denote the entries of the PSSM matrix by $p_{i,j}$, then the next 20 components of this feature vector are obtained according to the following equation:</font>
+<font size="4">Where $f_i$ is the normalized frequency of type i amino acids of the 20 standard amino acids in the protein chain. If we denote the entries of the PSSM by $p_{i,j}$, then the next 20 components of this feature vector are obtained according to the following equation:</font>
 
 \begin{equation}
 \psi_{j+20}=\alpha_j \quad (j=1,2,...,20),\\
@@ -811,23 +811,23 @@ head(as, n = 50)
 
 # Smoothed_pssm 
 
-<font size="4">This feature has been used to predict RNA binding sites in proteins, and therefore a specific feature vector is generated for each residue. To generate this feature vector, a matrix called smoothed_pssm is first created from the PSSM matrix using a parameter ws called the smooth window size, which usually has a default value of 7 and can Change between 3, 5, 7, 9 and 11. The i-th row in the smoothed_pssm matrix is obtained by summing ws row vectors around the i-th row, which of course corresponds to the i-th row in the protein. If we show this problem with a mathematical equation, then we will have:</font>
+<font size="4">This feature has been used to predict RNA binding sites in proteins, and therefore a specific feature vector is generated for each residue. To generate this feature vector, a matrix called smoothed_pssm is first created from the PSSM using a parameter ws called the smooth window size, which usually has a default value of 7 and can Change between 3, 5, 7, 9 and 11. The i-th row in the smoothed_PSSM is obtained by summing ws row vectors around the i-th row, which of course corresponds to the i-th row in the protein. If we show this problem with a mathematical equation, then we will have:</font>
 
 \begin{equation}
 V_{smoothed_i}=V_{i-\frac{(ws-1)}{2}}+...+V_i+...+V_{i+\frac{(ws-1)}{2}}
 \end{equation}
 
-<font size="4">In this regard, $V_i$'s represent the row vectors of the PSSM matrix. To obtain the first and last rows of the smoothed_pssm matrix corresponding to the N-terminal and C-terminal of the protein, zero vectors are added to the beginning and end of the PSSM. The Figure 15 represents these processes schematically.</font>
+<font size="4">In this regard, $V_i$'s represent the row vectors of the PSSM. To obtain the first and last rows of the smoothed_PSSM corresponding to the N-terminal and C-terminal of the protein, zero vectors are added to the beginning and end of the PSSM. The Figure 15 represents these processes schematically.</font>
 
 <br></br>
 
-```{r smooth,echo=FALSE,fig.cap="Figure 15: process of smoothed-pssm matrix generation, (A) represents the PSSM and (B) represents the smoothed-pssm matrix",out.width = '70%'}
+```{r smooth,echo=FALSE,fig.cap="Figure 15: process of smoothed-PSSM generation, (A) represents the PSSM and (B) represents the smoothed-PSSM",out.width = '70%'}
 knitr::include_graphics("figures/smoothed.jpg")
 ```
 
 <br></br>
 
-<font size="4">Now, using another parameter w called the slider window size, which its default value is 11 and can change in the interval (3,41)(ste=2), for the resid $\alpha_i$, the feature vector obtained from the smoothed-pssm matrix will be in the form as follows:</font>
+<font size="4">Now, using another parameter w called the slider window size, which its default value is 11 and can change in the interval (3,41)(ste=2), for the resid $\alpha_i$, the feature vector obtained from the smoothed-PSSM will be in the form as follows:</font>
 
 \begin{equation}
 (V_{smoothed_{i-\frac{(w-1)}{2}}},...,V_{smoothed_i},...,V_{smoothed_{i+\frac{(w-1)}{2}}})
@@ -846,7 +846,7 @@ head(w[,1:50], n = 50)
 <br></br>
 
 # Kiderafactor
-<font size="4">For producing this feature vector similar to the smoothed-PSSM feature, firstly PSSM is smoothed by appending zero vectors to its head and tail and utilizing sliding window of size odd, then this smoothed PSSM Matrix is condensed by the Kidera factors to produce feature vector for each residue [@fang2015condensing].</font>
+<font size="4">For producing this feature vector similar to the smoothed-PSSM feature, firstly PSSM is smoothed by appending zero vectors to its head and tail and utilizing sliding window of size odd, then this smoothed PSSM is condensed by the Kidera factors to produce feature vector for each residue [@fang2015condensing].</font>
 
 <br></br>
 
@@ -966,7 +966,7 @@ head(q, n = 50)
 <br></br>
 
 # SOMA-PSSM
-<font size="4"> This feature also considers each of the columns of the PSSM matrix as a time series. If L represents the length of the protein, then the column j of the matrix can be thought of $y(i), \ i=1,2,...,L$ as a time series. The SOMA algorithm is implemented in two steps using the following equations on the PSSM:
+<font size="4"> This feature also considers each of the columns of the PSSM as a time series. If L represents the length of the protein, then the column j of the matrix can be thought of $y(i), \ i=1,2,...,L$ as a time series. The SOMA algorithm is implemented in two steps using the following equations on the PSSM:
 - First, the moving average $\overline{y_n}(i)$ for the time series $y(i)$ is calculated according to the following equation:</font>
 
 \begin{equation}
